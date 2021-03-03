@@ -1,0 +1,32 @@
+name: Jinja template plugin
+rundeckPluginVersion: 1.2
+author: Chris Gadd
+date: 2021-03-03
+version: 0.1
+url: https://github.com/gaddman/rundeck-jinja-template
+providers:
+    - name: JinjaTemplate
+      service: WorkflowNodeStep
+      title: Template
+      description: Render a Jinja template using Rundeck variables.
+      plugin-type: script
+      script-file: jinja-render.py
+      config:
+        - name: template
+          title: Jinja template file
+          description: Path of the jinja template file to process. Use a trailing slash to process an entire folder. Wildcards allowed.
+          type: String
+          required: true
+        - name: output
+          title: Destination file
+          description: Path of the processed output file. If processing multiple files an existing folder name should be provided.
+          type: String
+          required: true
+        - name: data
+          title: Additional data
+          description: >
+            The 'job', 'node', and 'option' contexts will be rendered automatically. To render other contexts or arbitrary data, 
+            provide it here as a JSON dictionary of key/value pairs. Strings should be double-quoted. 
+            These will be included in a 'data' context, so template variables should have the form '{{ data.key }}'.
+          type: String
+          required: false
