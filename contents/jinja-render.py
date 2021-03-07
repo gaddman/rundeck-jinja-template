@@ -18,11 +18,13 @@ output = environ['RD_CONFIG_OUTPUT']
 data = environ.get('RD_CONFIG_DATA')
 debug = environ['RD_JOB_LOGLEVEL'] == "DEBUG"
 
-try:
-  template_vars['data'] = json.loads(data)
-except:
-  sys.exit("Failed to read additional data (is it valid JSON?): " + data)
-
+if data:
+  try:
+    template_vars['data'] = json.loads(data)
+  except:
+    sys.exit("Failed to read additional data (is it valid JSON?): " + data)
+else:
+  template_vars['data'] = None
 
 
 def renderTemplate(templateFile, outputFile, template_vars):
