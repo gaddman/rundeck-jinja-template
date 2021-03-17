@@ -29,7 +29,12 @@ else:
 
 def renderTemplate(templateFile, outputFile, template_vars):
   print(f"Rendering {templateFile} as {outputFile}")
-  env = Environment(loader=FileSystemLoader(Path(templateFile).parent))
+  env = Environment(
+    loader=FileSystemLoader(Path(templateFile).parent),
+    trim_blocks=True,
+    lstrip_blocks=True
+  )
+
   try:
     template = env.get_template(Path(templateFile).name)
   except exceptions.TemplateNotFound:

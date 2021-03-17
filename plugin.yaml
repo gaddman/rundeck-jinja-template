@@ -2,7 +2,7 @@ name: Jinja template plugin
 rundeckPluginVersion: 1.2
 author: Chris Gadd
 date: 2021-03-03
-version: 0.1
+version: 0.2
 url: https://github.com/gaddman/rundeck-jinja-template
 providers:
     - name: JinjaTemplate
